@@ -14,11 +14,13 @@ class CooperativaAdvancedRAG:
        
         current_dir = os.path.dirname(os.path.abspath(__file__))
         api_dir = os.path.dirname(current_dir) 
+        backend_dir = os.path.dirname(api_dir)
+
         
-        env_path = os.path.join(api_dir, ".env")
+        env_path = os.path.join(backend_dir, ".env")
         load_dotenv(env_path)
 
-        self.persist_directory = os.path.join(api_dir, "faiss_index")
+        self.persist_directory = os.path.join(backend_dir, "faiss_index")
 
         if not os.path.exists(self.persist_directory):
             raise RuntimeError(

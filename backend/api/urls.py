@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import SocioViewSet, ChatCooperativaView, ExtractCedulaOCRView
+from .views.socio_views import SocioViewSet
+from .views.rag_views import ChatCooperativaView
+from .views.ocr_views import ExtractCedulaOCRView
 router = DefaultRouter()
 router.register(r'socios', SocioViewSet)
 
