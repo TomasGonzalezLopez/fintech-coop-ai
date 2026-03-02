@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { extractCedulaData } from "@/components/utils/ocrService";
 export const useSolicitudForm = () => {
     const [step, setStep] = useState(1);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -11,7 +11,12 @@ export const useSolicitudForm = () => {
         cedula: "",
         ciudad: "Asunción",
         barrio: "San Vicente",
-        direccion: ""
+        direccion: "",
+        ingresos: "",
+        gastos: "",
+        montoSolicitado: "",
+        plazoSolicitado: "12",
+        tipoCredito: "Consumo"
     });
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,21 +31,8 @@ export const useSolicitudForm = () => {
         };
         reader.readAsDataURL(file);
 
-        const payload = new FormData();
-        payload.append("cedula_image", file);
-
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/ocr-cedula/", {
-                method: "POST",
-                body: payload,
-            });
-
-            if (!response.ok) {
-                throw new Error("Error en la extracción de OCR");
-            }
-
-            const data = await response.json();
-
+            const data = await extractCedulaData(file);
             setFormData(prev => ({
                 ...prev,
                 nombre: data.nombre || "No detectado",
@@ -56,6 +48,7 @@ export const useSolicitudForm = () => {
             setIsProcessing(false);
         }
     };
+
 
     const handleGetLocation = () => {
         setLocating(true);
