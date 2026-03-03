@@ -17,7 +17,6 @@ const SideBar = () => {
                 <ul>
                     <NavItem href="/dashboard" label="Dashboard" icon={<LayoutDashboard />} />
                     <NavItem href="/solicitudes" label="Nueva Solicitud" icon={<FilePlus />} />
-                    <NavItem href="/socios" label="Gestión de Socios" icon={<Users />} />
                     <NavItem href="/creditos" label="Préstamos" icon={<CreditCard />} />
                     <NavItem href="/consultas" label="Consultas IA" icon={<Bot />} />
                     <NavItem href="/reportes" label="Reportes" icon={<BarChart />} />
