@@ -4,6 +4,7 @@ from .views.socio_views import SocioViewSet
 from .views.rag_views import ChatCooperativaView
 from .views.ocr_views import ExtractCedulaOCRView
 from .views.prestamos_views import SolicitudPrestamoView
+from .views.reportes_views import DashboardStatsView
 
 router = DefaultRouter()
 router.register(r'socios', SocioViewSet, basename='socio')
@@ -13,4 +14,5 @@ urlpatterns = [
     path('chat/', ChatCooperativaView.as_view(), name='chat-ia'),   
     path('ocr-cedula/', ExtractCedulaOCRView.as_view(), name='ocr-cedula'),
     path('solicitud-prestamo/', SolicitudPrestamoView.as_view(), name='solicitud-prestamo'),
+    path('reportes/', DashboardStatsView.as_view(), name='reportes')
 ]
