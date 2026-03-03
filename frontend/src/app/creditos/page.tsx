@@ -151,7 +151,20 @@ export default function SolicitudesPage() {
             <div ref={formularioRef}>
                 {step >= 1 && (
                     <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg animate-in slide-in-from-bottom duration-700">
-
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-slate-800 mb-6">Solicitar préstamo</h2>
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                    <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${step >= 1 ? 'bg-[var(--color-green)] text-white' : 'bg-slate-200 text-slate-500'}`}>1</span>
+                                    <span className={`font-semibold ${step >= 1 ? 'text-slate-800' : 'text-slate-400'}`}>Paso 1</span>
+                                </div>
+                                <div className="h-[2px] w-12 bg-slate-200"></div>
+                                <div className="flex items-center gap-2">
+                                    <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${step >= 2 ? 'bg-[var(--color-green)] text-white' : 'bg-slate-200 text-slate-500'}`}>2</span>
+                                    <span className={`font-semibold ${step >= 2 ? 'text-slate-800' : 'text-slate-400'}`}>Paso 2</span>
+                                </div>
+                            </div>
+                        </div>
                         {step === 1 && (
                             <div className="space-y-6">
                                 {/* BUSCADOR INICIAL */}
