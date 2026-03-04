@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export const useCalculadora = () => {
     const [tipo, setTipo] = useState("");
-    // 1. Cambiamos el estado inicial a un número para evitar errores de tipo
     const [plazo, setPlazo] = useState(12);
     const [monto, setMonto] = useState("");
     const [resultado, setResultado] = useState({ monto: 0, cuotas: 0, cuotaMensual: 0 });
@@ -20,16 +19,11 @@ export const useCalculadora = () => {
     const handleMontoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valorPuro = e.target.value.replace(/\D/g, "");
         if (!valorPuro) { setMonto(""); return; }
-        // Guardamos el formato con puntos para la vista
         setMonto(new Intl.NumberFormat("es-PY").format(Number(valorPuro)));
     };
 
     const calcularCredito = () => {
-        // 2. Limpiamos el monto para tener un número puro
         const principal = parseFloat(monto.replace(/\D/g, ''));
-
-        // 3. 'plazo' ya es un número en nuestro estado, pero por seguridad 
-        // lo forzamos a entero si viene de un input range
         const meses = Number(plazo);
 
         if (!principal || isNaN(meses) || !tipo) {
@@ -37,19 +31,17 @@ export const useCalculadora = () => {
             return;
         }
 
-        // Definición de tasas según mercado paraguayo 2026
-        let tasaAnual = 0.18; // Consumo
+        let tasaAnual = 0.18;
         if (tipo === "vivienda") tasaAnual = 0.09;
         if (tipo === "vehiculo") tasaAnual = 0.13;
 
-        // Fórmula de amortización francesa
         const tasaMensual = tasaAnual / 12;
         const cuota = (principal * tasaMensual) / (1 - Math.pow(1 + tasaMensual, -meses));
 
         setResultado({
             monto: principal,
             cuotas: meses,
-            cuotaMensual: Math.round(cuota) // Redondeamos para Guaraníes
+            cuotaMensual: Math.round(cuota)
         });
         setShowResult(true);
     };

@@ -41,17 +41,17 @@ export default function SolicitudesPage() {
 
             const exito = await guardarEnBaseDeDatos(payload);
             if (exito) {
-                alert("✅ Solicitud enviada con éxito");
+                alert("Solicitud enviada con éxito");
                 window.location.reload();
             }
         } catch (error) {
-            alert("❌ Error al procesar la solicitud");
+            alert("Error al procesar la solicitud");
         }
     };
 
     return (
         <div className="flex flex-col gap-10 pb-20">
-            {/* --- SECCIÓN 1: SIMULADOR (Tu UI Original) --- */}
+            {/*simulador de prestamo*/}
             <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg">
                 <h1 className="text-3xl font-bold mb-8 border-b-3 border-[var(--color-green)] w-fit pb-2">Simulador de Créditos</h1>
                 <div className="flex flex-col lg:flex-row gap-12">
@@ -83,9 +83,8 @@ export default function SolicitudesPage() {
                                 onChange={(e) => calc.setPlazo(Number(e.target.value))}
                                 className="w-full p-4 h-14 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-[var(--color-green)] bg-slate-50"
                             >
-                                {/* Generamos un array de 120 posiciones y lo recorremos */}
-                                {Array.from({ length: 120 }, (_, i) => i + 1) // Crea números del 1 al 120
-                                    .filter(mes => mes >= 3) // Filtramos para que empiece desde 3 meses
+                                {Array.from({ length: 120 }, (_, i) => i + 1)
+                                    .filter(mes => mes >= 3)
                                     .map((mes) => (
                                         <option key={mes} value={mes}>
                                             {mes} meses {mes % 12 === 0 ? `(${mes / 12} ${mes / 12 === 1 ? 'año' : 'años'})` : ''}
@@ -95,7 +94,7 @@ export default function SolicitudesPage() {
                             </select>
                         </div>
 
-                        {/* Monto */}
+                        {/* box Monto  */}
                         <div>
                             <label className="text-sm font-medium text-slate-500 mb-2 block">Monto a Solicitar</label>
                             <input
@@ -147,7 +146,7 @@ export default function SolicitudesPage() {
                 </div>
             </section>
 
-            {/* --- SECCIÓN 2: FORMULARIO CON OCR INTEGRADO --- */}
+            {/* seccion de solicitud  */}
             <div ref={formularioRef}>
                 {step >= 1 && (
                     <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg animate-in slide-in-from-bottom duration-700">
@@ -186,7 +185,7 @@ export default function SolicitudesPage() {
                                     </div>
                                 )}
 
-                                {/* CASO: NO ES SOCIO -> ACTIVAR OCR */}
+                                {/* si no es socio -> activar ocr */}
                                 {socio.socioNotFound && !formData.nombre && (
                                     <div className="space-y-6 animate-in zoom-in duration-300">
                                         <div className="bg-orange-50 border border-orange-200 p-5 rounded-xl flex gap-4 text-orange-800">
@@ -222,7 +221,7 @@ export default function SolicitudesPage() {
                                     </div>
                                 )}
 
-                                {/* RESULTADO DE VALIDACIÓN (SOCIO O OCR EXITOSO) */}
+                                {/* resultado de validacion (socio o ocr exitoso) */}
                                 {formData.nombre && (
                                     <div className="bg-green-50 border border-green-200 p-8 rounded-3xl flex flex-col sm:flex-row items-center gap-6 animate-in zoom-in">
                                         <div className="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg">✓</div>

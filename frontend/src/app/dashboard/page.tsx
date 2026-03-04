@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Box from "@/components/ui/box";
 import LargeBox from "@/components/boxes/largebox";
 import { Loader2, UserPlus, RefreshCcw } from "lucide-react";
-
+import { API_BASE_URL } from "@/lib/api";
 export default function DashboardPage() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ export default function DashboardPage() {
     const fetchDashboardData = () => {
         setLoading(true);
         setError(false);
-        fetch("http://127.0.0.1:8000/api/reportes/")
+        fetch(`${API_BASE_URL}/api/reportes/`)
             .then((res) => {
                 if (!res.ok) throw new Error("Error en la respuesta del servidor");
                 return res.json();

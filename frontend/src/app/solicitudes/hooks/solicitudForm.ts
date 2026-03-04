@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { extractCedulaData } from "@/components/utils/ocrService";
+import { API_BASE_URL } from "@/lib/api";
 export const useSolicitudForm = () => {
     const [step, setStep] = useState(1);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -75,7 +76,7 @@ export const useSolicitudForm = () => {
     const handleFinalSubmit = async () => {
         setIsProcessing(true);
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/socios/', {
+            const response = await fetch(`${API_BASE_URL}/api/v1/socios/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
