@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { BarChart3, TrendingUp, Users, FileCheck, AlertCircle, Download, Loader2 } from "lucide-react";
-
+import { API_BASE_URL } from "@/lib/api";
 export default function ReportesPage() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/reportes/")
+        fetch(`${API_BASE_URL}/api/reportes/`)
             .then(res => res.json())
             .then(stats => {
-                console.log("Datos recibidos:", stats); // Revisa esto en la consola F12
+                console.log("Datos recibidos:", stats);
                 setData(stats);
                 setLoading(false);
             })
@@ -28,7 +28,6 @@ export default function ReportesPage() {
         </div>
     );
 
-    // Mapeo inteligente: busca el nombre nuevo o el viejo por si acaso
     const statsCards = [
         {
             label: "Total Socios",
@@ -77,7 +76,7 @@ export default function ReportesPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Gráfico de Barrios */}
+                {/* Grafico de Barrios */}
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm min-h-[450px] flex flex-col">
                     <div className="flex items-center justify-between mb-10">
                         <h2 className="text-lg font-bold text-slate-700">Distribución por Barrios</h2>
@@ -113,7 +112,7 @@ export default function ReportesPage() {
                     </div>
                 </div>
 
-                {/* Métricas de IA */}
+                {/* Metricas de IA */}
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <h2 className="text-lg font-bold text-slate-700 mb-6">Eficiencia de Procesos IA</h2>

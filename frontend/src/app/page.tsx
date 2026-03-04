@@ -1,10 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
-export default function Dashboard() {
-  return (
-    <div className="h-screen">
-      <p>Dashboard</p>
-    </div>
-  );
+export default function RootPage() {
+  redirect("/dashboard");
 }

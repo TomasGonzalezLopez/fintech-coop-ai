@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Box from "@/components/ui/box";
 import LargeBox from "@/components/boxes/largebox";
 import { Loader2, UserPlus, RefreshCcw } from "lucide-react";
-
+import { API_BASE_URL } from "@/lib/api";
 export default function DashboardPage() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -13,8 +13,7 @@ export default function DashboardPage() {
     const fetchDashboardData = () => {
         setLoading(true);
         setError(false);
-        // Conexión con el backend de Django
-        fetch("http://127.0.0.1:8000/api/reportes/")
+        fetch(`${API_BASE_URL}/api/reportes/`)
             .then((res) => {
                 if (!res.ok) throw new Error("Error en la respuesta del servidor");
                 return res.json();
@@ -34,7 +33,6 @@ export default function DashboardPage() {
         fetchDashboardData();
     }, []);
 
-    // Estado de Carga
     if (loading) return (
         <div className="flex h-full min-h-[400px] flex-col items-center justify-center p-20 text-slate-400">
             <Loader2 className="animate-spin mb-4 w-12 h-12 text-[#004d40]" />
@@ -42,7 +40,6 @@ export default function DashboardPage() {
         </div>
     );
 
-    // Estado de Error
     if (error) return (
         <div className="flex h-full flex-col items-center justify-center p-20 text-red-500">
             <p className="font-bold text-xl mb-4">No se pudo conectar con el servidor</p>
@@ -78,7 +75,7 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            {/* Grid de Métricas (Boxes) */}
+            {/* boxes de estadistica */}
             <div className="gap-6 flex flex-wrap lg:flex-nowrap">
                 <Box
                     title="Socios Totales"
@@ -92,13 +89,12 @@ export default function DashboardPage() {
                 />
                 <Box
                     title="Pendientes"
-                    // Usamos data.pendientes porque así viene del backend
                     value={data?.pendientes?.toLocaleString() || "0"}
                     change="Revisiones urgentes"
                 />
             </div>
 
-            {/* Listado de Solicitudes (LargeBoxes) */}
+            {/*Lista de solocitudes*/}
             <div className="mt-8 overflow-hidden flex-1 min-h-0">
                 <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-inner h-full flex flex-col">
                     <div className="flex items-center justify-between mb-6">

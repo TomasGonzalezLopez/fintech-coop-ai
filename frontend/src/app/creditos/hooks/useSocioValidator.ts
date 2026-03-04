@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "@/lib/api";
 
 export const useSocioVerificador = (setFormData: any) => {
     const [cedulaInput, setCedulaInput] = useState("");
@@ -11,7 +12,7 @@ export const useSocioVerificador = (setFormData: any) => {
         setSocioNotFound(false);
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/socios/?cedula=${cedulaInput}`);
+            const response = await fetch(`${API_BASE_URL}/api/v1/socios/?cedula=${cedulaInput}`);
             const data = await response.json();
             const resultados = Array.isArray(data) ? data : (data.results || []);
 
