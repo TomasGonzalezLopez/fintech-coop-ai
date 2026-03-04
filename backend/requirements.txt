@@ -8,5 +8,4 @@ chromadb
 python-dotenv
 requests
 gunicorn
-torch
-faiss-cpu
+whitenoise
