@@ -1,13 +1,27 @@
+# Django & Base
 Django>=5.0
 djangorestframework
 django-cors-headers
-google-generativeai
-langchain
-langchain-community
-langchain-google-genai
-chromadb
 python-dotenv
 requests
 gunicorn
 whitenoise
+
+# Google AI (Gemini & LangChain)
+google-generativeai
+langchain
+langchain-community
+langchain-google-genai
+
+# Procesamiento de Imágenes (Para el OCR)
+Pillow
+
+# RAG & Vectores (FAISS + HuggingFace)
 faiss-cpu
+langchain-huggingface
+sentence-transformers
+chromadb
+
+# Motores de Cálculo (Necesarios para CrossEncoder y Embeddings)
+torch
+numpy
