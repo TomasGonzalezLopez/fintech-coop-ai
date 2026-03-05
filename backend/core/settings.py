@@ -134,6 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://fintech-coop-ai.vercel.app",
+    "https://fintech-coop-or6mski9z-tomasgonzalezpy-4881s-projects.vercel.app"
 ]
 
 CORS_ALLOW_HEADERS = ["*"]
@@ -146,3 +148,11 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://fintech-coop-ai.vercel.app",
+    "https://fintech-coop-or6mski9z-tomasgonzalezpy-4881s-projects.vercel.app"
+]
+
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com', 'fintech-coop-ai.onrender.com']
