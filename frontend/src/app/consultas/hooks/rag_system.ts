@@ -42,7 +42,9 @@ export const useRAGSystem = () => {
         if (!query.trim()) return;
 
         const userMessage = { role: "user", content: query };
+
         const newMessages = [...messages, userMessage];
+
         setMessages(newMessages);
         setQuery("");
         setIsTyping(true);
@@ -53,7 +55,10 @@ export const useRAGSystem = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ question: query }),
+                body: JSON.stringify({
+                    question: query,
+                    history: newMessages
+                }),
             });
 
             if (!response.ok) {

@@ -13,7 +13,7 @@ langchain
 langchain-community
 langchain-google-genai
 
-# Procesamiento de Imágenes (Para el OCR)
+# Image Processing (For OCR)
 Pillow
 
 # RAG & Vectores (FAISS + HuggingFace)
@@ -22,6 +22,11 @@ langchain-huggingface
 sentence-transformers
 chromadb
 
-# Motores de Cálculo (Necesarios para CrossEncoder y Embeddings)
+# calculus library for CrossEncoder & Embeddings
 torch
 numpy
+
+# HuggingFace & LangChain
+langchain
+langchain-community
+huggingface-hub
